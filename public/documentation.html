@@ -38,14 +38,14 @@
     
         <tr>
             <td>Return data (description, genre, director, image URL) about a single movie by title to the user</td>
-            <td>/movies/title</td>
+            <td>/movies/:title</td>
             <td>GET</td>
             <td>A JSON object containing data about a single movie</td>
         </tr>
     
         <tr>
             <td>Return data about a genre by title</td>
-            <td>/movies/genre/genreName</td>
+            <td>/movies/genres/:genreName</td>
             <td>GET</td>
             <td>A JSON object containing data about a specific genre</td>
         </tr>
@@ -66,28 +66,28 @@
     
         <tr>
             <td>Allow users to update their profile</td>
-            <td>/users/id</td>
+            <td>/users/:username</td>
             <td>PUT</td>
             <td>A JSON object containing the updated user information</td>
         </tr>
     
         <tr>
             <td>Allows users to add a movie to their favourites</td>
-            <td>/users/id/movieTitle</td>
+            <td>/users/:username/:favoriteMovies</td>
             <td>POST</td>
             <td>A text message saying the movie has successfully been added to the users favorite movies list</td>
         </tr>
     
         <tr>
             <td>Allows users to remove a movie from their favourites</td>
-            <td>/users/id/movieTitle</td>
+            <td>/users/:username/:favoriteMovies</td>
             <td>DELETE</td>
             <td>A text message saying the movie has successfully been removed from the favorite movies list</td>
         </tr>
     
         <tr>
             <td>Allows existing users to delete their profile</td>
-            <td>/users/id</td>
+            <td>/users/:username</td>
             <td>DELETE</td>
             <td>A text message saying that the user has successfully deleted their profile</td>
         </tr>
