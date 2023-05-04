@@ -13,9 +13,6 @@ const passport = require('passport');
 
 const { check, validationResult } = require('express-validator');
 const cors = require('cors');
-    app.use(cors());
-    /*let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];*/
-
     app.use(cors({
     origin: (origin, callback) => {
         if(!origin) return callback(null, true);
@@ -252,9 +249,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong :(')
 });
 
-/*app.listen(8080, () => {
-    console.log('Your app is listening on port 8080.')
-});*/
 const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
  console.log('Listening on Port ' + port);
