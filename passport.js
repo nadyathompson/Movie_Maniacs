@@ -12,7 +12,18 @@ passport.use(new LocalStrategy({
     passwordField: 'Password'
     }, (username, password, callback) => {
         console.log(username + ' ' + password);
-        Users.findOne({ Username: username }, (error, user) => {
+        Users.findOne({ Username: username })
+            .then((user) => {
+            if (!user.validatePassword(password)) {
+                console.log("incorrect password");
+                return callback(null, false, { message: "Incorrect password." });
+            }
+            return callback(null, user);
+            })
+            .catch((e) =>
+            callback(null, false, { message: "Incorrect username or password." })
+            );
+        /*Users.findOne({ Username: username }, (error, user) => {
             if (error) {
                 console.log(error);
                 return callback(error);
@@ -29,7 +40,7 @@ passport.use(new LocalStrategy({
 
               console.log('finished');
               return callback(null, user);
-        })
+        })*/
         //.then( user => callback(null, user))
         //.catch(e => callback(null, false, {message: 'Incorrect username or password.'}))
     }));
