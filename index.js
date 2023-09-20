@@ -67,14 +67,22 @@ app.post('/users',
 
 //update user info
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
+    const newUser = {}
+    if (req.body.Username) {
+        newUser.Username = req.body.Username
+    }
+    if (req.body.Password) {
+        newUser.Password = Users.hashPassword(req.body.Password);
+    }
+    if (req.body.Email) {
+        newUser.Email = req.body.Email
+    }
+    if (req.body.Birthday) {
+        newUser.Birthday = req.body.Birthday
+    }
 	Users.findOneAndUpdate(
 		{ Username: req.params.Username },
-		{$set: {
-				Username: req.body.Username,
-				Password: req.body.Password,
-				Email: req.body.Email,
-				Birthday: req.body.Birthday,
-			},
+		{$set: newUser,
 		},
 		{ new: true }
 	)
