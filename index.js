@@ -68,6 +68,7 @@ app.post('/users',
 //update user info
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
     const newUser = {}
+    console.log(body)
     if (req.body.Username) {
         newUser.Username = req.body.Username
     }
@@ -80,6 +81,8 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req
     if (req.body.Birthday) {
         newUser.Birthday = req.body.Birthday
     }
+    console.log('------------- The new user info ------------')
+    console.log(newUser)
 	Users.findOneAndUpdate(
 		{ Username: req.params.Username },
 		{$set: newUser,
