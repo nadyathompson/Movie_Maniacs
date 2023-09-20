@@ -68,7 +68,7 @@ app.post('/users',
 //update user info
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), (req, res) => {
     const newUser = {}
-    console.log(body)
+    console.log(req.body)
     if (req.body.Username) {
         newUser.Username = req.body.Username
     }
